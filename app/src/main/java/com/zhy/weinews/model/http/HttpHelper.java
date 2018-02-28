@@ -1,6 +1,9 @@
 package com.zhy.weinews.model.http;
 
-import com.zhy.weinews.ui.welcome.WelcomeBean;
+import com.zhy.weinews.model.bean.GankItemBean;
+import com.zhy.weinews.model.http.response.GankHttpResponse;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -12,7 +15,7 @@ import io.reactivex.Flowable;
 
 public interface HttpHelper {
 
-	Flowable<WelcomeBean> fetchWelcomeInfo(String res);
+	Flowable<GankHttpResponse<List<GankItemBean>>> fetchRandomGirl(int num);
 
    /* Flowable<DailyListBean> fetchDailyListInfo();
 
@@ -42,7 +45,7 @@ public interface HttpHelper {
 
     Flowable<GankHttpResponse<List<GankItemBean>>> fetchGirlList(int num, int page);
 
-    Flowable<GankHttpResponse<List<GankItemBean>>> fetchRandomGirl(int num);
+
 
     Flowable<GankHttpResponse<List<GankSearchItemBean>>> fetchGankSearchList(String query, String type, int num, int page);
 

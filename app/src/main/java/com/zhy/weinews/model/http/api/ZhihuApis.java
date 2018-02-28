@@ -1,11 +1,5 @@
 package com.zhy.weinews.model.http.api;
 
-import com.zhy.weinews.ui.welcome.WelcomeBean;
-
-import io.reactivex.Flowable;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-
 /**
  * Created by codeest on 2016/8/2.
  * 知乎APIs
@@ -17,9 +11,10 @@ public interface ZhihuApis {
     /*
      * 启动界面图片
     */
+    /*
     @GET("start-image/{res}")
     Flowable<WelcomeBean> getWelcomeInfo(@Path("res") String res);
-
+    */
     /**
      * 最新日报
      *//*

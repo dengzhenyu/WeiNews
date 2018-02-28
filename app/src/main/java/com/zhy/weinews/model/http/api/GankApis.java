@@ -1,5 +1,14 @@
 package com.zhy.weinews.model.http.api;
 
+import com.zhy.weinews.model.bean.GankItemBean;
+import com.zhy.weinews.model.http.response.GankHttpResponse;
+
+import java.util.List;
+
+import io.reactivex.Flowable;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
 /**
  * Created by codeest on 16/8/19.
  */
@@ -28,12 +37,11 @@ public interface GankApis {
     */
 /**
      * 随机妹纸图
-     *//*
+     */
 
     @GET("random/data/福利/{num}")
     Flowable<GankHttpResponse<List<GankItemBean>>> getRandomGirl(@Path("num") int num);
 
-    */
 /**
      * 搜索
      *//*

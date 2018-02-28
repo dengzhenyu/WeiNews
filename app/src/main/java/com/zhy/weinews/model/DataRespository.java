@@ -1,10 +1,13 @@
 package com.zhy.weinews.model;
 
 
+import com.zhy.weinews.model.bean.GankItemBean;
 import com.zhy.weinews.model.db.DBHelper;
 import com.zhy.weinews.model.http.HttpHelper;
+import com.zhy.weinews.model.http.response.GankHttpResponse;
 import com.zhy.weinews.model.prefs.PreferencesHelper;
-import com.zhy.weinews.ui.welcome.WelcomeBean;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -31,7 +34,7 @@ public class DataRespository  {
         return mPreferencesHelper.getNoImageState();
     }
 
-    public Flowable<WelcomeBean> fetchWelcomeInfo(String res) {
-        return mHttpHelper.fetchWelcomeInfo(res);
+    public Flowable<GankHttpResponse<List<GankItemBean>>> fetchRandomGirl(int num) {
+        return mHttpHelper.fetchRandomGirl(num);
     }
 }

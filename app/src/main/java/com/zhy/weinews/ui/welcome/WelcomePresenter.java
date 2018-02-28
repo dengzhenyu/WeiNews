@@ -3,8 +3,12 @@ package com.zhy.weinews.ui.welcome;
 
 import com.zhy.weinews.base.RxPresenter;
 import com.zhy.weinews.model.DataRespository;
+import com.zhy.weinews.model.bean.GankItemBean;
+import com.zhy.weinews.model.http.response.GankHttpResponse;
 import com.zhy.weinews.util.RxUtil;
+import com.zhy.weinews.wight.CommonSubscriber;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -18,9 +22,8 @@ import io.reactivex.functions.Consumer;
 
 public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implements WelcomeContract.Presenter{
 
-    private static final String RES = "1080*1776";
 
-    private static final int COUNT_DOWN_TIME = 2200;
+    private static final int COUNT_DOWN_TIME = 3000;
 
     private DataRespository mDataManager;
 
@@ -31,18 +34,14 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
 
     @Override
     public void getWelcomeData() {
-        addSubscribe(mDataManager.fetchWelcomeInfo(RES)
-                .compose(RxUtil.<WelcomeBean>rxSchedulerHelper())
-                .subscribe(new Consumer<WelcomeBean>() {
+        addSubscribe(mDataManager.fetchRandomGirl(1)
+                .compose(RxUtil.<GankHttpResponse<List<GankItemBean>>>rxSchedulerHelper())
+                .compose(RxUtil.<List<GankItemBean>>handleResult())
+                .subscribeWith(new CommonSubscriber<List<GankItemBean>>(mView){
                     @Override
-                    public void accept(WelcomeBean welcomeBean) {
-                        mView.showContent(welcomeBean);
+                    public void onNext(List<GankItemBean> list) {
+                        mView.showContent(list.get(0));
                         startCountDown();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        mView.jumpToMain();
                     }
                 })
         );

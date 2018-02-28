@@ -1,13 +1,16 @@
 package com.zhy.weinews.model.http;
 
 
+import com.zhy.weinews.model.bean.GankItemBean;
 import com.zhy.weinews.model.http.api.GankApis;
 import com.zhy.weinews.model.http.api.GoldApis;
 import com.zhy.weinews.model.http.api.MyApis;
 import com.zhy.weinews.model.http.api.VtexApis;
 import com.zhy.weinews.model.http.api.WeChatApis;
 import com.zhy.weinews.model.http.api.ZhihuApis;
-import com.zhy.weinews.ui.welcome.WelcomeBean;
+import com.zhy.weinews.model.http.response.GankHttpResponse;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,9 +39,10 @@ public class RetrofitHelper implements HttpHelper {
         this.mVtexApiService = vtexApiService;
     }
 
+
     @Override
-    public Flowable<WelcomeBean> fetchWelcomeInfo(String res) {
-        return mZhihuApiService.getWelcomeInfo(res);
+    public Flowable<GankHttpResponse<List<GankItemBean>>> fetchRandomGirl(int num) {
+        return mGankApiService.getRandomGirl(num);
     }
 /*
     @Override
